@@ -3,21 +3,15 @@
 from setuptools import setup
 
 setup(
-    # GETTING-STARTED: set your app name:
-    name='YourAppName',
-    # GETTING-STARTED: set your app version:
-    version='1.0',
-    # GETTING-STARTED: set your app description:
+    name='zosiaproject',
+    version='0.1',
     description='OpenShift App',
-    # GETTING-STARTED: set author name (your name):
-    author='Your Name',
-    # GETTING-STARTED: set author email (your email):
-    author_email='example@example.com',
-    # GETTING-STARTED: set author url (your url):
-    url='http://www.python.org/sigs/distutils-sig/',
-    # GETTING-STARTED: define required django version:
+    author='KSI',
+    author_email='zosia@cs.uni.wroc.pl',
+    url='http://ksi.ii.uni.wroc.pl/',
     install_requires=[
-        'Django==1.8.4'
+        'Django==1.8.4',
+        'Pillow==2.9.0'
     ],
     dependency_links=[
         'https://pypi.python.org/simple/django/'

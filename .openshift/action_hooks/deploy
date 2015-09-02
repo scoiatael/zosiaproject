@@ -7,12 +7,8 @@
 source $VIRTUAL_ENV/bin/activate
 export PYTHONPATH="$PYTHONPATH:${OPENSHIFT_REPO_DIR}libs"
 
-# GETTING-STARTED: change 'myproject' to your project name:
-echo "Executing 'python $OPENSHIFT_REPO_DIR/wsgi/myproject/manage.py migrate --noinput'"
-# GETTING-STARTED: change 'myproject' to your project name:
-python "$OPENSHIFT_REPO_DIR"wsgi/myproject/manage.py migrate --noinput
+echo "Executing 'python $OPENSHIFT_REPO_DIR/wsgi/zosiaproject/manage.py migrate --noinput'"
+python "$OPENSHIFT_REPO_DIR"wsgi/zosiaproject/manage.py migrate --noinput
 
-# GETTING-STARTED: change 'myproject' to your project name:
-echo "Executing 'python $OPENSHIFT_REPO_DIR/wsgi/myproject/manage.py collectstatic --noinput'"
-# GETTING-STARTED: change 'myproject' to your project name:
-python "$OPENSHIFT_REPO_DIR"wsgi/myproject/manage.py collectstatic --noinput
+echo "Executing 'python $OPENSHIFT_REPO_DIR/wsgi/zosiaproject/manage.py collectstatic --noinput'"
+python "$OPENSHIFT_REPO_DIR"wsgi/zosiaproject/manage.py collectstatic --noinput
