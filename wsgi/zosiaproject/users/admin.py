@@ -82,9 +82,9 @@ class UserPreferencesAdmin(admin.ModelAdmin):
     last_login.admin_order_field = 'user__last_login'
 
     def anim_icon(self,id):
-        return '<img src="/static_media/images/macthrob-small.png" alt="loading" id="anim%s" style="display:none"/>'%id
-    yes_icon = '<img src="/static_media/images/icon-yes.gif" alt="Yes" />'
-    no_icon  = '<img src="/static_media/images/icon-no.gif" alt="No" />'
+        return '<img src="/static/images/macthrob-small.png" alt="loading" id="anim%s" style="display:none"/>'%id
+    yes_icon = '<img src="/static/images/icon-yes.gif" alt="Yes" />'
+    no_icon  = '<img src="/static/images/icon-no.gif" alt="No" />'
     def onclick(self,id,obj):
         return """if(confirm('Do you want to register payment from %s?')) {
         document.getElementById('anim%s').style.display='inline';
