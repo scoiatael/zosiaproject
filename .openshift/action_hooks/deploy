@@ -7,6 +7,11 @@
 source $VIRTUAL_ENV/bin/activate
 export PYTHONPATH="$PYTHONPATH:${OPENSHIFT_REPO_DIR}libs"
 
+if [ ! -f "$OPENSHIFT_DATA_DIR"secrets.json ]; then
+	echo "Generating $OPENSHIFT_DATA_DIR/secrets.json"
+	python "$OPENSHIFT_REPO_DIR".openshift/action_hooks/secrets.py > "$OPENSHIFT_DATA_DIR"secrets.json
+fi
+
 echo "Executing 'python $OPENSHIFT_REPO_DIR/wsgi/zosiaproject/manage.py migrate --noinput'"
 python "$OPENSHIFT_REPO_DIR"wsgi/zosiaproject/manage.py migrate --noinput
 
