@@ -1,16 +1,14 @@
-# -*- coding: UTF-8 -*-
-from datetime import timedelta, datetime
-from django.core.mail import send_mail
-
 from django.db import models
+from django.core.mail import send_mail
 from django.contrib.auth.models import (
     BaseUserManager, AbstractBaseUser, PermissionsMixin)
 from django.http import Http404
 from django.shortcuts import get_object_or_404
 from django.template import loader, Context
 from django.utils import timezone
-from django.utils.encoding import smart_text
 from django.utils.translation import ugettext as _
+from datetime import timedelta, datetime
+
 from common.models import ZosiaDefinition
 
 SHIRT_SIZE_CHOICES = (
@@ -82,7 +80,7 @@ class ParticipantManager(BaseUserManager):
         user = self.create_user(
             email,
             password=password)
-        user.is_admin = True
+        user.is_superuser = True
         user.save(using=self._db)
         return user
 
@@ -98,7 +96,8 @@ class Participant(AbstractBaseUser, PermissionsMixin):
         _('active'),
         default=True,
         help_text=_('Designates whether this user should be treated as '
-                    'active. Unselect this instead of deleting accounts.'))
+                    'active. Unselect this instead of deleting accounts.'),
+    )
     date_joined = models.DateTimeField(
         _('date joined'),
         default=timezone.now)
@@ -111,22 +110,21 @@ class Participant(AbstractBaseUser, PermissionsMixin):
     USERNAME_FIELD = 'email'
 
     class Meta:
-        verbose_name = _('user')
-        verbose_name_plural = _('users')
+        verbose_name = _('participant')
+        verbose_name_plural = _('participants')
 
-    def __unicode__(self):
+    def __str__(self):
         return self.get_full_name()
 
     def get_full_name(self):
         """
         Returns the first_name plus the last_name, with a space in between.
         """
-        full_name = ' '.join(self.first_name, self.last_name)
-        return smart_text(full_name)
+        return ' '.join((self.first_name, self.last_name))
 
     def get_short_name(self):
         "Returns the short name for the user."
-        return smart_text(self.first_name)
+        return self.first_name
 
     def email_user(self, subject, message, from_email=None):
         """
@@ -136,9 +134,7 @@ class Participant(AbstractBaseUser, PermissionsMixin):
 
     @property
     def is_staff(self):
-        "Is the user a member of staff?"
-        # Simplest possible answer: All admins are staff
-        return self.is_admin
+        return self.is_superuser
 
     @property
     def has_opened_records(self):
