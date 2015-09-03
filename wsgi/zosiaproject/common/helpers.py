@@ -1,7 +1,6 @@
-# -*- coding: UTF-8 -*-
-from datetime import datetime, timedelta
 from common.models import ZosiaDefinition
 from django.http import Http404
+from django.utils import timezone
 
 # TODO: this module should be replaced by calls to database
 from users.models import UserPreferences
@@ -16,7 +15,7 @@ def is_registration_enabled():
     start_date = definition.registration_start
     final_date = definition.registration_final
     assert start_date <= final_date
-    return datetime.now() > start_date and datetime.now() < final_date
+    return timezone.now() > start_date and timezone.now() < final_date
 
 
 def is_free_rooms():
@@ -42,7 +41,7 @@ def is_lecture_suggesting_enabled():
     start_date = definition.lectures_suggesting_start
     final_date = definition.lectures_suggesting_final
     assert start_date < final_date
-    return datetime.now() > start_date and datetime.now() < final_date
+    return timezone.now() > start_date and timezone.now() < final_date
 
 
 def is_lecture_suggesting_disabled():
@@ -61,7 +60,7 @@ def is_rooming_enabled(request = None):
 
     assert start_date < final_date
 
-    return start_date < datetime.now() < final_date
+    return start_date < timezone.now() < final_date
 
 
 def has_user_opened_records(user):

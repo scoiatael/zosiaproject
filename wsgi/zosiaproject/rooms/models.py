@@ -2,7 +2,7 @@
 from django.conf import settings
 from django.db import models
 from django.contrib.auth.models import User
-from datetime import datetime
+from django.utils import timezone
 from common.helpers import *
 import random
 
@@ -111,7 +111,7 @@ class Room(models.Model):
 
     def short_locked(self):
         # returns true when time is still in future
-        ret = self.short_unlock_time > datetime.now()
+        ret = self.short_unlock_time > timezone.now()
         return ret
 
 

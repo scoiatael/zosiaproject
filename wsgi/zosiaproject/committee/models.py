@@ -1,6 +1,5 @@
 from django.db import models
 from django.conf import settings
-import datetime
 from lectures.models import Lecture
 
 

@@ -1,5 +1,5 @@
 # -*- coding: UTF-8 -*-
-from datetime import timedelta
+from django.utils.timezone import timedelta
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ObjectDoesNotExist
 from django.shortcuts import render_to_response, get_object_or_404

@@ -1,8 +1,8 @@
 from django.db import models
+from django.utils import timezone
 from django.utils.translation import ugettext as _
 from django.conf import settings
 from django.contrib.auth.models import User
-import datetime
 
 class BlogPost(models.Model):
     title = models.CharField(max_length=128)
@@ -16,7 +16,7 @@ class BlogPost(models.Model):
 
     def save(self, *args, **kwargs):
         if not self.id:
-            self.pub_date = datetime.datetime.now()
+            self.pub_date = timezone.now()
         super(BlogPost, self).save(*args, **kwargs)
     
     def __str__(self):

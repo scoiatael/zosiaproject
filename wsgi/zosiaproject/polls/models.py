@@ -1,5 +1,5 @@
 # -*- coding: UTF-8 -*-
-import datetime
+from django.utils import timezone
 from django.db import models
 from django.conf import settings
 from django.shortcuts import get_object_or_404
@@ -14,7 +14,7 @@ class PollManager(models.Manager):
         definition = get_object_or_404(ZosiaDefinition, active_definition=True)
         preferences = get_object_or_404(UserPreferences, user=user, state=definition)
         result = []
-        now = datetime.datetime.now()
+        now = timezone.now()
         for poll in polls:
             if not poll.visible:
                 continue

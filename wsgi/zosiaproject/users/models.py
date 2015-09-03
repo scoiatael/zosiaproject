@@ -7,7 +7,8 @@ from django.shortcuts import get_object_or_404
 from django.template import loader, Context
 from django.utils import timezone
 from django.utils.translation import ugettext as _
-from datetime import timedelta, datetime
+from django.utils import timezone
+from django.utils.timezone import timedelta
 
 from common.models import ZosiaDefinition
 
@@ -140,7 +141,7 @@ class Participant(AbstractBaseUser, PermissionsMixin):
     def has_opened_records(self):
         preference = get_object_or_404(UserPreferences.objects.select_related('state'), user=self)
         user_opening_hour = preference.state.rooming_start - timedelta(minutes=preference.minutes_early)
-        return user_opening_hour <= datetime.now() <= preference.state.rooming_final
+        return user_opening_hour <= timezone.now() <= preference.state.rooming_final
 
 
 class UserPreferences(models.Model):

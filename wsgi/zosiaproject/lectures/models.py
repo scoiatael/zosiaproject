@@ -3,8 +3,8 @@ from django.conf import settings
 
 from django.db import models
 from django.contrib.auth.models import User
+from django.utils import timezone
 
-from datetime import datetime
 
 class LectureManager(models.Manager):
 
@@ -16,7 +16,7 @@ class LectureManager(models.Manager):
                               abstract  = data['abstract'],
                               # sprezentujpl_email = data['sprezentujpl_email'], 
                               info      = data['info'],
-                              date_time = datetime.now(),
+                              date_time = timezone.now(),
                               accepted  = False
                             )
         lecture.save()

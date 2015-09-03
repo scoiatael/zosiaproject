@@ -10,8 +10,8 @@ from django.http import HttpResponseRedirect
 import random
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_POST
+from django.utils import timezone
 from .models import *
-from datetime import *
 from common.helpers import *
 
 # from models import *
@@ -79,7 +79,7 @@ def open_room(request):
     if occupation.ownership:
         room = occupation.room
         if room.password == request.POST['key']:
-            occupation.room.short_unlock_time = datetime.now()
+            occupation.room.short_unlock_time = timezone.now()
             occupation.room.save()
             return HttpResponse('ok')
 
@@ -96,7 +96,7 @@ def close_room(request):
             no_locators = UserInRoom.objects.filter(room=room).count()
         if no_locators == 1: # user is still alone in this room
                 timeout = timedelta(0,4*60*60,0)
-                occupation.room.short_unlock_time = datetime.now() + timeout
+                occupation.room.short_unlock_time = timezone.now() + timeout
                 occupation.room.save()
                 return HttpResponse('ok')
 
@@ -152,7 +152,7 @@ def modify_room(request):
             else:
                 get_in_room(request.user, room, True)
                 timeout = timedelta(0,120,0) # 2 minutes
-                room.short_unlock_time = datetime.now() + timeout
+                room.short_unlock_time = timezone.now() + timeout
                 room.password = ''.join([ str(random.choice(list(range(10)))) for _ in range(6) ])
                 room.save()
                 json['msg'] = "<br/>Przekaż klucz swoim znajomym, aby<br/>mogli dołączyć do tego pokoju.<br/><br/>"
