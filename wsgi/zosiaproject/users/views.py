@@ -1,4 +1,3 @@
-# -*- coding: UTF-8 -*-
 from django.utils.timezone import timedelta
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ObjectDoesNotExist
@@ -18,7 +17,7 @@ from users.utils import send_confirmation_mail, prepare_data
 
 def register(request):
     if is_registration_disabled():
-        raise Http404
+        raise Http404('Registration is disabled')
 
     if not is_free_rooms():
         return HttpResponseRedirect('/waiting/')
@@ -26,9 +25,11 @@ def register(request):
     title = "Registration"
     definition = get_object_or_404(ZosiaDefinition, active_definition=True)
 
-    date_1, date_2, date_3, date_4 = definition.zosia_start, (definition.zosia_start + timedelta(days=1)),\
-                                                 (definition.zosia_start + timedelta(days=2)),\
-                                                 (definition.zosia_start + timedelta(days=3))
+    date_1 = definition.zosia_start
+    date_2 = date_1 + timedelta(days=1)
+    date_3 = date_2 + timedelta(days=1)
+    date_4 = date_3 + timedelta(days=1)
+
     user_form = RegistrationForm(request.POST or None)
     pref_form = preferences_form_fabric(definition)(request.POST or None)
     org_form = OrganizationForm(request.POST or None)
@@ -36,30 +37,30 @@ def register(request):
     f1 = user_form.is_valid()
     f2 = pref_form.is_valid()
     f3 = org_form.is_valid()
-    if f1 and f2 and f3:
-        user = user_form.save()
-        org = org_form.save()
+    if not (f1 and f2 and f3):
+        return render_to_response('register_form.html', locals())
+    
+    user = user_form.save()
+    org = org_form.save()
 
-        send_confirmation_mail(request, user, definition)
-        preference = pref_form.save(commit=False)
-        preference.user = user
-        preference.org = org
-        preference.state = definition
-        preference.save()
+    send_confirmation_mail(request, user, definition)
+    preference = pref_form.save(commit=False)
+    preference.user = user
+    preference.org = org
+    preference.state = definition
+    preference.save()
 
-        return HttpResponseRedirect('/register/thanks/')
-    return render_to_response('register_form.html', locals())
+    return HttpResponseRedirect('/register/thanks/')
 
 
 def waiting_list(request):
     title = "Registration"
     definition = get_object_or_404(ZosiaDefinition, active_definition=True)
 
-
-
-    date_1, date_2, date_3, date_4 = definition.zosia_start, (definition.zosia_start + timedelta(days=1)),\
-                                                 (definition.zosia_start + timedelta(days=2)),\
-                                                 (definition.zosia_start + timedelta(days=3))
+    date_1 = definition.zosia_start
+    date_2 = date_1 + timedelta(days=1)
+    date_3 = date_2 + timedelta(days=1)
+    date_4 = date_3 + timedelta(days=1)
 
     if request.POST:
         form = WaitingForm(request.POST)
@@ -138,10 +139,7 @@ def activate_user(request, uidb36=None, token=None):
 def regulations(request):
     # Setting title makes "Registration" link visible on the panel.
     title = "Registration"
-    try:
-        definition = ZosiaDefinition.objects.get(active_definition=True)
-    except Exception:
-        raise Http404
+    definition = get_object_or_404(ZosiaDefinition, active_definition=True)
     zosia_start = definition.zosia_start
     zosia_final = definition.zosia_final
     return render_to_response('regulations.html', locals())
@@ -156,7 +154,7 @@ def thanks(request):
 @login_required
 def users_status(request):
     if not ( request.user.is_staff and request.user.is_active ):
-        raise Http404
+        raise Http404('User is not staff memeber or is not active')
     # nie no, to jest źle...
     # users = User.objects.all()
     # prefs = UserPreferences.objects.all()
@@ -166,13 +164,13 @@ def users_status(request):
 
 
 def register_payment(request):
+    if not request.POST:
+        raise Http404('POST only')
     user = request.user
     if not user.is_authenticated() or not user.is_staff or not user.is_active:
-        raise Http404
-    if not request.POST:
-        raise Http404
+        raise Http404('User is not authenticated or is not staff memeber or is not active')
     pid = request.POST['id']
     prefs = UserPreferences.objects.get(id=pid)
     prefs.paid = True
     prefs.save()
-    return HttpResponse("ok")
+    return HttpResponse('ok')
