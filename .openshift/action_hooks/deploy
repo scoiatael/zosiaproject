@@ -4,9 +4,6 @@
 # up again.  This script gets executed directly, so it could be python, php,
 # ruby, etc.
 
-source $VIRTUAL_ENV/bin/activate
-export PYTHONPATH="$PYTHONPATH:${OPENSHIFT_REPO_DIR}libs"
-
 if [ ! -f "$OPENSHIFT_DATA_DIR"secrets.json ]; then
 	echo "Generating $OPENSHIFT_DATA_DIR/secrets.json"
 	python "$OPENSHIFT_REPO_DIR"libs/secrets.py > "$OPENSHIFT_DATA_DIR"secrets.json

@@ -50,7 +50,7 @@ Then push the repo upstream
     git push
 
 Now, you have to create [admin account](#admin-user-name-and-password), so you 
-can setup Django instance.
+can setup your Django instance.
 	
 That's it. You can now checkout your application at:
 
@@ -58,10 +58,10 @@ That's it. You can now checkout your application at:
 
 Admin user name and password
 ----------------------------
-Use SSH to log into django gear. And now run this command
+Use `rhc ssh` to log into python gear and run this command:
 
 	python $OPENSHIFT_REPO_DIR/wsgi/zosiaproject/manage.py createsuperuser
 
-And follow the steps. Now you should be able to login at
+You should be now able to login at:
 
 	http://django-$yournamespace.rhcloud.com/admin/
