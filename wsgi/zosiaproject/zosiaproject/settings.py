@@ -142,7 +142,8 @@ STATIC_ROOT = os.path.join(WSGI_DIR, 'static')
 # Media directory
 # (used for content uploaded by users)
 
-#MEDIA_ROOT = ''
+MEDIA_URL = '/static/media/'
+MEDIA_ROOT = os.path.join(DATA_DIR, 'media')
 
 
 # E-mail configuration
