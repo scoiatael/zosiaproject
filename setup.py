@@ -13,8 +13,10 @@ setup(
         'Django==1.8.4',
         'Pillow==2.9.0',
         'pytz==2015.4',
+        'django-mailgun==0.3.0',
     ],
     dependency_links=[
         'https://pypi.python.org/simple/django/',
+        'https://pypi.python.org/simple/django-mailgun/',
     ],
 )

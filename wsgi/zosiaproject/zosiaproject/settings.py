@@ -25,7 +25,7 @@ SECRETS = secrets.getter(os.path.join(DATA_DIR, 'secrets.json'))
 # See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = SECRETS['secret_key']
+SECRET_KEY = SECRETS.get('secret_key')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DEBUG') == 'True'
@@ -149,8 +149,6 @@ MEDIA_ROOT = os.path.join(DATA_DIR, 'media')
 # E-mail configuration
 # well, it's temporary, of course...
 
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_PORT = '25'
-EMAIL_HOST_USER = 'zosia.xxxx@gmail.com' # it doesn't exist afaik
-EMAIL_HOST_PASSWORD = 'haselko'
-EMAIL_USE_TLS = True
+EMAIL_BACKEND = 'django_mailgun.MailgunBackend'
+MAILGUN_ACCESS_KEY = SECRETS.get('mailgun_access_key')
+MAILGUN_SERVER_NAME = SECRETS.get('mailgun_server_name')
