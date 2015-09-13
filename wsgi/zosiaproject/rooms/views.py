@@ -1,5 +1,3 @@
-# -*- coding: UTF-8 -*-
-
 from django.views.decorators.cache import cache_page
 from django.http import *
 from django.template import Context
@@ -7,14 +5,13 @@ from django.template.loader import get_template
 from django.shortcuts import render_to_response
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
-import random
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_POST
+from django.utils.crypto import get_random_string
 from django.utils import timezone
+
 from .models import *
 from common.helpers import *
-
-# from models import *
 
 @login_required
 def index(request):
@@ -34,9 +31,9 @@ def index(request):
 @csrf_exempt
 def json_rooms_list(request):
     if not request.user.has_opened_records:
-        raise Http404
+        raise Http404('there is no opened records for user')
     json = Room.objects.to_json(request)
-    return HttpResponse(json, mimetype="application/json")
+    return HttpResponse(json, content_type='application/json')
 
 def dict_to_json(d):
     ret = []
@@ -153,10 +150,11 @@ def modify_room(request):
                 get_in_room(request.user, room, True)
                 timeout = timedelta(0,120,0) # 2 minutes
                 room.short_unlock_time = timezone.now() + timeout
-                room.password = ''.join([ str(random.choice(list(range(10)))) for _ in range(6) ])
+                import string
+                room.password = get_random_string(6, string.digits)
                 room.save()
                 json['msg'] = "<br/>Przekaż klucz swoim znajomym, aby<br/>mogli dołączyć do tego pokoju.<br/><br/>"
-                json['form'] = "Klucz do pokoju: <strong>%s</strong><br/>" % room.password
+                json['form'] = "Klucz do pokoju: <strong>{}</strong><br/>".format(room.password)
                 json['buttons'] = close_room_btn(room.password) + leave_open_room_btn(room.password) + CONST_LEAVE_ROOM_BTN
         else:
             #
@@ -198,5 +196,5 @@ def modify_room(request):
         json['msg'] = "<br/>Zapisy na pokoje są zamknięte.<br/>"
         json['buttons'] = CONST_OK_BTN
     json['locators'] = get_room_locators(room)
-    return HttpResponse(dict_to_json(json), mimetype="application/json")
+    return HttpResponse(dict_to_json(json), content_type='application/json')
 
