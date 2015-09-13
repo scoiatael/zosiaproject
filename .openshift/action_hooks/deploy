@@ -5,7 +5,7 @@
 # ruby, etc.
 
 mkdir -p "$OPENSHIFT_DATA_DIR"media
-ln -sf "$OPENSHIFT_DATA_DIR"media "$OPENSHIFT_REPO_DIR"wsgi/static/media
+ln -snf "$OPENSHIFT_DATA_DIR"media "$OPENSHIFT_REPO_DIR"wsgi/static/media
 
 if [ ! -f "$OPENSHIFT_DATA_DIR"secrets.json ]; then
 	echo "Generating $OPENSHIFT_DATA_DIR/secrets.json"
