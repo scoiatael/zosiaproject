@@ -17,6 +17,12 @@ def generator():
     chars = 'abcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*(-_=+)'
     SECRETS['secret_key'] = get_random_string(50, chars)
 
+    # Mailgun configuration template
+    # You should fill this in secrets.json
+
+    SECRETS['mailgun_access_key'] = ''
+    SECRETS['mailgun_server_name'] = ''
+
     return SECRETS
 
 if __name__ == '__main__':
