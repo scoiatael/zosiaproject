@@ -111,8 +111,12 @@ AUTH_USER_MODEL = 'users.Participant'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(DATA_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': os.environ['PGDATABASE'],
+        'USER': os.environ['OPENSHIFT_POSTGRESQL_DB_USERNAME'],
+        'PASSWORD': os.environ['OPENSHIFT_POSTGRESQL_DB_PASSWORD'],
+        'HOST': os.environ['OPENSHIFT_POSTGRESQL_DB_HOST'],
+        'PORT': os.environ['OPENSHIFT_POSTGRESQL_DB_PORT']
     }
 }
 
