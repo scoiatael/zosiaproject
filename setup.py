@@ -4,7 +4,7 @@ from setuptools import setup
 
 setup(
     name='zosiaproject',
-    version='0.1',
+    version='0.2',
     description='OpenShift App',
     author='KSI',
     author_email='zosia@cs.uni.wroc.pl',
