@@ -63,9 +63,9 @@ Use `rhc ssh` to log into python gear and run this command:
 
 You should be now able to login at:
 
-	http://django-$yournamespace.rhcloud.com/admin/
+	http://$appname-$yournamespace.rhcloud.com/admin/
 
 Site requirements
 -----------------
-In your admin panel go to Common > zosiadefinition and add an entry which perscribes
+In your admin panel go to `Common >> zosiadefinition` and add an entry which prescribes
 ZOSIA event. It is essential for this site.
