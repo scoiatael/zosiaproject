@@ -2,9 +2,7 @@ ZOSIA on OpenShift
 ===================
 
 The Django project name used in this repo
-is 'zosiaproject' and is located in wsgi dir.  Right now the
-backend is sqlite3 and the database runtime is found in
-`$OPENSHIFT_DATA_DIR/db.sqlite3`.
+is `zosiaproject` and is located in wsgi dir.
 
 On subsequent pushes, a `python manage.py migrate` is executed to make
 sure that any models you added are created in the DB.  If you do
@@ -18,10 +16,8 @@ nicely formatted error pages in browser for HTTP 500 errors.
 Do not forget to turn this environment variable off and fully restart
 the application when you finish:
 
-```
-$ rhc env unset DEBUG
-$ rhc app stop && rhc app start
-```
+    $ rhc env unset DEBUG
+    $ rhc app stop && rhc app start
 
 Setting up the website
 ----------------------
