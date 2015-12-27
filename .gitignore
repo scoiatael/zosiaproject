@@ -8,3 +8,5 @@
 venv/
 dist/
 zosiaproject.egg-info/
+data/
+!data/.keep
