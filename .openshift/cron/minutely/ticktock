@@ -1,2 +1,5 @@
 #!/bin/bash
- date >> ${OPENSHIFT_DATA_DIR}/ticktock.log
+date >> ${OPENSHIFT_DATA_DIR}/backup.log
+
+source ${OPENSHIFT_PYTHON_DIR}/virtenv/venv/bin/activate
+python ${OPENSHIFT_REPO_DIR}/wsgi/zosiaproject/manage.py dbbackup -z -c
