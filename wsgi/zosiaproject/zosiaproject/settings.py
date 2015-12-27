@@ -15,7 +15,7 @@ BASE_DIR = os.path.dirname(DJ_PROJECT_DIR)
 WSGI_DIR = os.path.dirname(BASE_DIR)
 REPO_DIR = os.path.dirname(WSGI_DIR)
 DATA_DIR = os.environ.get('OPENSHIFT_DATA_DIR', BASE_DIR)
-TOKENS = secrets.getter(os.path.join(DATA_DIR, 'tokens.json'))
+TOKENS_FILEPATH = os.path.join(DATA_DIR, 'tokens.json')
 
 import sys
 sys.path.append(os.path.join(REPO_DIR, 'libs'))
@@ -161,6 +161,6 @@ MAILGUN_SERVER_NAME = SECRETS.get('mailgun_server_name')
 # DBBackup configuration
 
 DBBACKUP_STORAGE = 'dbbackup.storage.dropbox_storage'
-DBBACKUP_TOKENS_FILEPATH = TOKENS
+DBBACKUP_TOKENS_FILEPATH = TOKENS_FILEPATH
 DBBACKUP_DROPBOX_APP_KEY = os.environ.get('DBBACKUP_DROPBOX_APP_KEY')
 DBBACKUP_DROPBOX_APP_SECRET = os.environ.get('DBBACKUP_DROPBOX_APP_SECRET')
