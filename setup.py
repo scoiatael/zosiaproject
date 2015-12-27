@@ -15,7 +15,6 @@ setup(
         'pytz==2015.7',
         'django-mailgun==0.8.0',
         'django-dbbackup===2.3.2',
-        'dropbox==3.38'
     ],
     dependency_links=[
         'https://pypi.python.org/simple/django/',
@@ -23,6 +22,5 @@ setup(
         'https://pypi.python.org/simple/pytz/',
         'https://pypi.python.org/simple/django-mailgun/',
         'https://pypi.python.org/django-dbbackup/',
-        'https://pypi.python.org/dropbox/'
     ],
 )
