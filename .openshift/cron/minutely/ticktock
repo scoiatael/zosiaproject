@@ -3,3 +3,18 @@ date >> ${OPENSHIFT_DATA_DIR}/backup.log
 
 source ${OPENSHIFT_PYTHON_DIR}/virtenv/venv/bin/activate
 python ${OPENSHIFT_REPO_DIR}/wsgi/zosiaproject/manage.py dbbackup -z -c
+
+LAST_BACKUP=$(ls -t ${OPENSHIFT_DATA_DIR}/backups | head -n 1)
+RECIPIENT=${DBBACKUP_EMAIL_RECIPIENT}
+
+python <<EOF
+from django.core.mail import EmailMessage
+
+subject, from_email, to = 'backup', 'admin@zosia.org', '${RECIPIENT}'
+text_content = 'This is database snapshot.'
+msg = EmailMessage(subject, text_content, from_email, [to])
+msg.attach_file("${LAST_BACKUP}")
+msg.send()
+EOF
+
+echo '  email sent' >> ${OPENSHIFT_DATA_DIR}/backup.log

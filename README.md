@@ -93,3 +93,5 @@ To send them to [Dropbox](http://www.dropbox.com):
         ```
 
 __DISCLAIMER__ as of Dropbox v3.38 this doesn't work. OAuth flow is broken in SDK.
+
+If you enable cron job, emails will also be sent periodically to email address contained in `DBBACKUP_EMAIL_RECIPIENT` env variable.
