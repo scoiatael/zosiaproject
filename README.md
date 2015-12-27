@@ -71,7 +71,5 @@ Database backups
 By default, backups are sent to [Dropbox](http://www.dropbox.com).
 Create new application at https://www.dropbox.com/developers/apps and set following environment variables:
 ```
-DBBACKUP_STORAGE = 'dbbackup.storage.dropbox_storage'
-DBBACKUP_TOKENS_FILEPATH = '$OPENSHIFT_DATA_DIR/dbbackup_dropbox_tokens'
 DBBACKUP_DROPBOX_APP_KEY = '<dropbox_app_key>'
 DBBACKUP_DROPBOX_APP_SECRET = '<dropbox_app_secret>'
