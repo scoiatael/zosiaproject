@@ -5,3 +5,6 @@
 *~
 .project
 .pydevproject
+venv/
+dist/
+zosiaproject.egg-info/

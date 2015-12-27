@@ -58,10 +58,20 @@ Use `rhc ssh` to log into python gear and run this command:
 	python $OPENSHIFT_REPO_DIR/wsgi/zosiaproject/manage.py createsuperuser
 
 You should be now able to login at:
-
-	http://$appname-$yournamespace.rhcloud.com/admin/
+    http://django-$yournamespace.rhcloud.com/admin/
 
 Site requirements
 -----------------
 In your admin panel go to `Common >> zosiadefinition` and add an entry which prescribes
 ZOSIA event. It is essential for this site.
+
+Database backups
+----------------
+
+By default, backups are sent to [Dropbox](http://www.dropbox.com).
+Create new application at https://www.dropbox.com/developers/apps and set following environment variables:
+```
+DBBACKUP_STORAGE = 'dbbackup.storage.dropbox_storage'
+DBBACKUP_TOKENS_FILEPATH = '$OPENSHIFT_DATA_DIR/dbbackup_dropbox_tokens'
+DBBACKUP_DROPBOX_APP_KEY = '<dropbox_app_key>'
+DBBACKUP_DROPBOX_APP_SECRET = '<dropbox_app_secret>'
