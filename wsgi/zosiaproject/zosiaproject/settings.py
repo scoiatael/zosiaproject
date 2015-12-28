@@ -49,6 +49,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     #'django.contrib.formtools',
+    'dbbackup',  # django-dbbackup
 
     'rooms',
     'lectures',
@@ -155,3 +156,9 @@ MEDIA_ROOT = os.path.join(DATA_DIR, 'media')
 EMAIL_BACKEND = 'django_mailgun.MailgunBackend'
 MAILGUN_ACCESS_KEY = SECRETS.get('mailgun_access_key')
 MAILGUN_SERVER_NAME = SECRETS.get('mailgun_server_name')
+
+
+# Django Database Backup
+
+DBBACKUP_STORAGE = 'dbbackup.storage.filesystem_storage'
+DBBACKUP_STORAGE_OPTIONS = {'location': os.path.join(DATA_DIR, 'backups')}
