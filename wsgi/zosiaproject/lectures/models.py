@@ -1,4 +1,3 @@
-# -*- coding: UTF-8 -*-
 from django.conf import settings
 
 from django.db import models
@@ -52,6 +51,5 @@ class Lecture(models.Model):
         verbose_name_plural = 'Wykłady'
         ordering = ['order', 'id']
 
-    def __unicode__(self):
-        return "%s - %s" % (self.author, self.title)
-        
+    def __str__(self):
+        return "{} - {}".format(self.author, self.title)

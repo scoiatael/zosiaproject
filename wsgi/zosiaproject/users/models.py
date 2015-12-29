@@ -55,8 +55,8 @@ class Organization(models.Model):
         verbose_name = 'Organizacja'
         verbose_name_plural = 'Organizacje'
 
-    def __unicode__(self):
-        return "%s" % self.name
+    def __str__(self):
+        return self.name
 
 
 class ParticipantManager(BaseUserManager):
@@ -186,8 +186,8 @@ class UserPreferences(models.Model):
     class Meta:
         verbose_name_plural = 'Preferencje'
 
-    def __unicode__(self):
-        return "%s" % (self.user.first_name,)
+    def __str__(self):
+        return self.user.first_name
 
     def save(self, *args, **kwargs):
         from common.models import ZosiaDefinition

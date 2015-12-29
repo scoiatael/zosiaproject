@@ -1,4 +1,3 @@
-# -*- coding: UTF-8 -*-
 from django.utils import timezone
 from django.db import models
 from django.conf import settings
@@ -50,8 +49,8 @@ class Poll(models.Model):
         verbose_name = 'Ankieta'
         verbose_name_plural = 'Ankiety'
 
-    def __unicode__(self):
-        return "%s" % (self.title,)
+    def __str__(self):
+        return self.title
 
 
 class Question(models.Model):
@@ -64,8 +63,8 @@ class Question(models.Model):
         verbose_name_plural = 'Pytanie'
         ordering = ['order', 'id']
 
-    def __unicode__(self):
-        return "%s" % (self.question,)
+    def __str__(self):
+        return self.question
 
 
 class UserAnswer(models.Model):
