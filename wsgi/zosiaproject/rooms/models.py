@@ -49,7 +49,7 @@ class Room(models.Model):
     users = models.ManyToManyField(settings.AUTH_USER_MODEL, through='UserInRoom')
 
     # unlock time for first locator
-    short_unlock_time   = models.DateTimeField()
+    short_unlock_time   = models.DateTimeField(default=timezone.now)
     #long unlock time
     #long_unlock_time   = models.DateTimeField()
 

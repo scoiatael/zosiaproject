@@ -51,6 +51,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     #'django.contrib.formtools',
     'dbbackup',  # django-dbbackup
+    'import_export',  # django-import-export
 
     'rooms',
     'lectures',

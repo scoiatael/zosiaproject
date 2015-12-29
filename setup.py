@@ -15,6 +15,7 @@ setup(
         'pytz==2015.7',
         'django-mailgun==0.8.0',
         'django-dbbackup==2.3.3',
+        'django-import-export==0.4.2',
     ],
     dependency_links=[
         'https://pypi.python.org/simple/django/',
@@ -22,5 +23,7 @@ setup(
         'https://pypi.python.org/simple/pytz/',
         'https://pypi.python.org/simple/django-mailgun/',
         'https://pypi.python.org/simple/django-dbbackup/',
+        'https://pypi.python.org/simple/django-import-export/',
+        'https://pypi.python.org/simple/tablib/',
     ],
 )
