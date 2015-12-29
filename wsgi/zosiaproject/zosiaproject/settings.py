@@ -40,6 +40,17 @@ ALLOWED_HOSTS = [
 ]
 
 
+# Django Debug Toolbar
+#
+
+def custom_show_toolbar(request):
+     return True  # Always show toolbar, for example purposes only.
+
+DEBUG_TOOLBAR_CONFIG = {
+    'SHOW_TOOLBAR_CALLBACK': 'zosiaproject.settings.custom_show_toolbar',
+}
+
+
 # Application definition
 
 INSTALLED_APPS = (
@@ -52,6 +63,7 @@ INSTALLED_APPS = (
     #'django.contrib.formtools',
     'dbbackup',  # django-dbbackup
     'import_export',  # django-import-export
+    'debug_toolbar',  # django-debug-toolbar
 
     'rooms',
     'lectures',
@@ -66,6 +78,7 @@ INSTALLED_APPS = (
 )
 
 MIDDLEWARE_CLASSES = (
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     #'django.middleware.csrf.CsrfViewMiddleware',

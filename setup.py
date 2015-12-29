@@ -16,8 +16,10 @@ setup(
         'django-mailgun==0.8.0',
         'django-dbbackup==2.3.3',
         'django-import-export==0.4.2',
+        'django-debug-toolbar==1.4',
     ],
     dependency_links=[
+        'https://pypi.python.org/simple/',
         'https://pypi.python.org/simple/django/',
         'https://pypi.python.org/simple/pillow/',
         'https://pypi.python.org/simple/pytz/',
@@ -25,5 +27,6 @@ setup(
         'https://pypi.python.org/simple/django-dbbackup/',
         'https://pypi.python.org/simple/django-import-export/',
         'https://pypi.python.org/simple/tablib/',
+        'https://pypi.python.org/simple/django-debug-toolbar/',
     ],
 )
