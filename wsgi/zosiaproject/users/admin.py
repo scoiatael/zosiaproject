@@ -8,7 +8,7 @@ from .models import UserPreferences, SHIRT_TYPES_CHOICES, Organization, Particip
 
 
 class ParticipantAdmin(admin.ModelAdmin):
-    pass
+    list_display = ('get_full_name', 'email')
 
 
 class RoomsFilter(admin.SimpleListFilter):
