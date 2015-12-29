@@ -53,6 +53,7 @@ That's it. You can now checkout your application at:
 
 Admin user name and password
 ----------------------------
+
 Use `rhc ssh` to log into python gear and run this command:
 
 	python $OPENSHIFT_REPO_DIR/wsgi/zosiaproject/manage.py createsuperuser
@@ -62,6 +63,7 @@ You should be now able to login at:
 
 Site requirements
 -----------------
+
 In your admin panel go to `Common >> zosiadefinition` and add an entry which prescribes
 ZOSIA event. It is essential for this site.
 
@@ -70,28 +72,34 @@ Database backups
 
 By default, backups are created on file.
 To send them to [Dropbox](http://www.dropbox.com):
+
     1. Create new application at https://www.dropbox.com/developers/apps and set following environment variables:
-        ```
+
         DBBACKUP_DROPBOX_APP_KEY = '<dropbox_app_key>'
         DBBACKUP_DROPBOX_APP_SECRET = '<dropbox_app_secret>'
-        ```
+
     2. Customize `settings.py`:
+
        * Add
-        ```
+
         TOKENS_FILEPATH = os.path.join(DATA_DIR, 'tokens')
         DBBACKUP_STORAGE = 'dbbackup.storage.dropbox_storage'
         DBBACKUP_TOKENS_FILEPATH = TOKENS_FILEPATH
         DBBACKUP_DROPBOX_APP_KEY = os.environ.get('DBBACKUP_DROPBOX_APP_KEY')
         DBBACKUP_DROPBOX_APP_SECRET = os.environ.get('DBBACKUP_DROPBOX_APP_SECRET')
-        ```
+
         * Delete
-        ```
+
         BACKUP_DIR = os.path.join(DATA_DIR, 'backups')
         DBBACKUP_STORAGE = 'dbbackup.storage.dropbox_storage'
         DBBACKUP_STORAGE = 'dbbackup.storage.filesystem_storage'
         DBBACKUP_STORAGE_OPTIONS = {'location': BACKUP_DIR}
-        ```
+
 
 __DISCLAIMER__ as of Dropbox v3.38 this doesn't work. OAuth flow is broken in SDK.
 
-If you enable cron job, emails will also be sent periodically to email address contained in `DBBACKUP_EMAIL_RECIPIENT` env variable.
+If you enable cron job, emails will also be sent periodically to email address
+contained in `DBBACKUP_EMAIL_RECIPIENT` env variable.
+Also you need a following cartridge
+
+	$ rhc cartridge add cron -a $appname

@@ -158,8 +158,8 @@ EMAIL_BACKEND = 'django_mailgun.MailgunBackend'
 MAILGUN_ACCESS_KEY = SECRETS.get('mailgun_access_key')
 MAILGUN_SERVER_NAME = SECRETS.get('mailgun_server_name')
 
-# DBBackup configuration
 
-DBBACKUP_STORAGE = 'dbbackup.storage.dropbox_storage'
+# Django Database Backup
+
 DBBACKUP_STORAGE = 'dbbackup.storage.filesystem_storage'
-DBBACKUP_STORAGE_OPTIONS = {'location': BACKUP_DIR}
+DBBACKUP_STORAGE_OPTIONS = {'location': os.path.join(DATA_DIR, 'backups')}
