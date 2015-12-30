@@ -19,8 +19,6 @@ from django.contrib import admin
 import blog.views
 from blog.feeds import *
 import lectures.views
-import common.views
-#import rooms.views
 import users.views
 
 feeds = {
@@ -41,6 +39,9 @@ urlpatterns = [
     url(r'^polls/', include('polls.urls', namespace='polls')),
     url(r'^committee/', include('committee.urls', namespace='committee')),
 
+    # authentication related
+    url('^', include('common.urls')),
+
     # registration related
     url(r'^register/$', users.views.register),
     url(r'^waiting/$', users.views.waiting_list),
@@ -51,30 +52,7 @@ urlpatterns = [
 
     url(r'^change_preferences/$', users.views.change_preferences),
 
-    # login / logout
-    url(r'^login/$', common.views.login_view),
-    url(r'^accounts/login/', common.views.login_view),
-    url(r'^logout/$', common.views.logout_view),
-    url(r'^logout/bye/$', common.views.thanks),
-
     # apps main urls
     url(r'^lectures/$', lectures.views.index),
     url(r'^program/$', lectures.views.program),
-
-    # urls required for password change/reset
-    url(r'^password_change/$', common.views.password_change),
-    url(r'^password_change/done/$', common.views.password_change_done),
-
-    url(r'^password_reset/$',
-        'django.contrib.auth.views.password_reset',
-        { 'template_name':'password_reset_form.html' }, name='password_reset'),
-    url(r'^password_reset/done/$',
-        'django.contrib.auth.views.password_reset_done',
-        { 'template_name':'password_reset_done.html' }, name='password_reset_done'),
-    url(r'^reset/(?P<uidb64>[0-9A-Za-z]+)-(?P<token>.+)/$',
-        'django.contrib.auth.views.password_reset_confirm',
-        { 'template_name':'password_reset_confirm.html' }, name='password_reset_confirm'),
-    url(r'^reset/done/$',
-        'django.contrib.auth.views.password_reset_complete',
-        { 'template_name':'password_reset_complete.html' }, name='password_reset_complete'),
 ]
