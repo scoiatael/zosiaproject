@@ -6,7 +6,12 @@ urlpatterns = [
 	# login / logout
 	url(r'^login/$', views.login_view),
 	url(r'^accounts/login/', views.login_view),
-	url(r'^logout/$', views.logout_view),
+	url(
+		r'^logout/$',
+	    auth_views.logout,
+	    {'next_page': '/logout/bye/'},
+	    name='logout'
+	),
 	url(r'^logout/bye/$', views.thanks),
 
 	# urls required for password change/reset

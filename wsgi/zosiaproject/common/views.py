@@ -65,9 +65,6 @@ def login_view(request):
     # - login after password reset (aka 'password recovery')
     return render_to_response('login.html', locals())
 
-def logout_view(request):
-    logout(request)
-    return HttpResponseRedirect('/logout/bye/')
 
 def thanks(request):
     user = request.user
