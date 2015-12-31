@@ -98,7 +98,7 @@ def close_room(request):
                 return HttpResponse('ok')
 
 
-CONST_LEAVE_ROOM_BTN = '''<button onclick="window.location='leave/'">Opuść pokój</button>'''
+CONST_LEAVE_ROOM_BTN = '''<button onclick=\"window.location='leave/'\">Opuść pokój</button>'''
 CONST_OK_BTN = '<button onclick=\'hideDialog()\'>OK</button>'
 CONST_OK2_BTN = '<button onclick=\'hideDialog()\'>Zostań w pokoju</button>'
 # CONST_LEAVE_OPEN_ROOM_BTN = u'<button onclick=\'Rooms.hideDialog(1)\'>Otwórz pokój</button>'
