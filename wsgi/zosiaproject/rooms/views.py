@@ -9,7 +9,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_POST
 from django.utils.crypto import get_random_string
 from django.utils import timezone
-import json
+import json as json_lib
 
 from .models import *
 from common.helpers import *
@@ -197,4 +197,4 @@ def modify_room(request):
         json['msg'] = "<br/>Zapisy na pokoje są zamknięte.<br/>"
         json['buttons'] = CONST_OK_BTN
     json['locators'] = get_room_locators(room)
-    return HttpResponse(json.dumps(json), content_type='application/json')
+    return HttpResponse(json_lib.dumps(json), content_type='application/json')
