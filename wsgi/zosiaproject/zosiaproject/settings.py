@@ -44,7 +44,7 @@ ALLOWED_HOSTS = [
 #
 
 def custom_show_toolbar(request):
-     return True  # Always show toolbar, for example purposes only.
+    return DEBUG
 
 DEBUG_TOOLBAR_CONFIG = {
     'SHOW_TOOLBAR_CALLBACK': 'zosiaproject.settings.custom_show_toolbar',
