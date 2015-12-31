@@ -4,7 +4,7 @@
 {% load blurb_edit %}
 <html lang="pl">
 <head>
-    <title>ZOSIA 2015</title>
+    <title>ZOSIA 2016</title>
 <meta http-equiv="Pragma" content="no-cache"/>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 <meta http-equiv="Content-Language" content="pl" />
@@ -36,7 +36,7 @@ window.onload=function(){ AddFillerLink("col1_content","col3_content"); }
 		<div id="header">
 			<div id="topnav">
                 {% if user.is_authenticated %}
-                    {% trans "oh hai" %}, {{ user.first_name }} {{ user.last_name}} |
+                    {% trans "oh hai" %}, {{ user.get_full_name }} |
                     {# <a href="/password_change/">{% trans "Change password" %}</a> | #}
                     {% if user.is_staff %}
                     <a href="/admin/">{% trans "Administration panel" %}</a> |
@@ -47,12 +47,12 @@ window.onload=function(){ AddFillerLink("col1_content","col3_content"); }
                     <form action="{% url 'login' %}" method="post" id="login_form">
                     {% csrf_token %}
                     <fieldset>
-                    {% if login_form.email.errors %}
+                    {% if login_form.username.errors %}
                         <ul class="errorlist">
-                        {% for error in login_form.email.errors %}<li>{{error|escape}}</li>{% endfor %}
+                        {% for error in login_form.username.errors %}<li>{{error|escape}}</li>{% endfor %}
                         </ul>
                     {% endif %}
-                    <label for="id_login_email">e-mail</label> {{ login_form.email }}
+                    <label for="id_login_email">e-mail</label> {{ login_form.username }}
                     {% if form.password.errors %}
                         <ul class="errorlist">
                         {% for error in form.password.errors %}<li>{{error|escape}}</li>{% endfor %}
@@ -70,7 +70,7 @@ window.onload=function(){ AddFillerLink("col1_content","col3_content"); }
                 {% endif %}
             </div>
             <a href="/blog/"><img src="/static/images/logo_zosi_shadow.png" alt="ZOSIA" /></a>
-			<span>Zimowy Obóz Studentów Informatyki A &#8226; 2015</span></div>
+			<span>Zimowy Obóz Studentów Informatyki A &#8226; 2016</span></div>
 		<!-- begin: main navigation #nav -->
 		<div id="nav"> <a id="navigation" name="navigation"></a>
 			<!-- skiplink anchor: navigation -->

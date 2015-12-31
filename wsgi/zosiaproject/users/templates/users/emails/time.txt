@@ -1,4 +1,4 @@
-Drogi uczestniku, droga uczestniczko ZOSIA 2015.
+Drogi uczestniku, droga uczestniczko ZOSIA 2016.
 
 ZOSIA zbliża się wielkimi krokami. Już niedługo zaczynamy zapisy na pokoje w ośrodku.
 Twój czas otwarcia zapisów: {{time|date:"H:i, d m Y"}}
@@ -9,5 +9,5 @@ Uwaga: Jeśli nikt nie zapisze się do zamkniętego pokoju przez długi czas, po
 W tym roku, zgodnie z postulatem części z was, zostały wydłużone czasy działania blokad.
 
 Pozdrawiamy serdecznie
-Organizatorzy ZOSIA2015
+Organizatorzy ZOSIA2016
 
