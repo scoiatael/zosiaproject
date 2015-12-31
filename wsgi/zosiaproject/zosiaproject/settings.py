@@ -125,6 +125,8 @@ AUTHENTICATION_BACKENDS = (
 )
 AUTH_USER_MODEL = 'users.Participant'
 LOGIN_REDIRECT_URL = '/change_preferences/'
+LOGIN_URL = '/login/'
+LOGOUT_URL = '/logout/'
 
 
 # Database
