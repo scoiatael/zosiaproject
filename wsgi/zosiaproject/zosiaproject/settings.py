@@ -129,6 +129,16 @@ LOGIN_URL = '/login/'
 LOGOUT_URL = '/logout/'
 
 
+# Disable caching
+#
+
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.dummy.DummyCache',
+    }
+}
+
+
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
 
