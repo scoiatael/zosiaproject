@@ -2,12 +2,13 @@ from django.shortcuts import render, HttpResponse
 from django.http import HttpResponseRedirect
 from django.contrib.auth import *
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.forms import PasswordResetForm, SetPasswordForm, PasswordChangeForm
 from .forms import *
 
 def thanks(request):
     title = "Bye!"
-    login_form = LoginForm()
+    login_form = AuthenticationForm()
     return render(request, 'bye.html', locals())
 
 
