@@ -1,7 +1,7 @@
 from django.utils.timezone import timedelta
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ObjectDoesNotExist
-from django.shortcuts import render_to_response, get_object_or_404
+from django.shortcuts import render, render_to_response, get_object_or_404
 from django.contrib.auth.tokens import default_token_generator as token_generator
 from django.utils.http import base36_to_int
 from django.http import Http404, HttpResponseRedirect, HttpResponse
@@ -118,7 +118,7 @@ def change_preferences(request):
         pref_form = preferences_form_fabric(definition, prefs)(instance=prefs)
         payment = prefs.count_payment()
     user_wants_bus = prefs.bus
-    return render_to_response('change_preferences.html', locals())
+    return render(request, 'change_preferences.html', locals())
 
 
 def activate_user(request, uidb36=None, token=None):
