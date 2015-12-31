@@ -30,9 +30,3 @@ def index(request):
                 lecture_proposition_form = LectureForm()
 
     return render(request, 'lectures.html', locals())
-
-
-def program(request):
-    title = "Program"
-    return render(request, 'program.html', locals())
-

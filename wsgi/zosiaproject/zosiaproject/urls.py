@@ -54,5 +54,5 @@ urlpatterns = [
 
     # apps main urls
     url(r'^lectures/$', lectures.views.index),
-    url(r'^program/$', lectures.views.program),
+    url(r'^agenda/$', include('agenda.urls', namespace='agenda')),
 ]
