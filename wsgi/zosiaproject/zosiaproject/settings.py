@@ -65,6 +65,7 @@ INSTALLED_APPS = (
     'import_export',  # django-import-export
     'debug_toolbar',  # django-debug-toolbar
 
+    'agenda',
     'rooms',
     'lectures',
     'blog',
