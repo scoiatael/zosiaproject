@@ -45,6 +45,7 @@ window.onload=function(){ AddFillerLink("col1_content","col3_content"); }
                 {% else %}
                 {% if login_form %}
                     <form action="/login/" method="post" id="login_form">
+                    {% csrf_token %}
                     <fieldset>
                     {% if login_form.email.errors %}
                         <ul class="errorlist">
