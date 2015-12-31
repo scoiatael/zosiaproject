@@ -27,8 +27,8 @@ feeds = {
 
 urlpatterns = [
     url(r'^$', blog.views.index),
-    url(r'^blog/', include('blog.urls')),
-    url(r'^rooms/', include('rooms.urls')),
+    url(r'^blog/', include('blog.urls', namespace='blog')),
+    url(r'^rooms/', include('rooms.urls', namespace='rooms')),
 
     # rss feed
     url(r'^feeds/$', LatestBlogEntries()),
