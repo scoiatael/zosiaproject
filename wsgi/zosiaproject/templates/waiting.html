@@ -62,7 +62,7 @@ form_onload()
 {% block content %}
     <h1 style="color:red;">Zabrakło miejsc :(</h1>
 <p>Niestety osiągneliśmi limit pojemności ośrodka. Ponieważ jednak niewszyscy zarejestrowani zdecydują się na wyjazd, zachęcamy do wpisania się na listę rezerwową. Będziemy informować o zwolnieniu miejsc.</p>
-<form action="../waiting/" method="post" id="register_form">
+<form action="../waiting/" method="post" id="register_form">{% csrf_token %}
     <fieldset id="register_auth">
         <legend>Dane do uwierzytelniania</legend>
         <ol>

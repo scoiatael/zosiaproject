@@ -105,7 +105,7 @@ CONST_OK2_BTN = '<button onclick=\'hideDialog()\'>Zostań w pokoju</button>'
 # CONST_USE_KEY_BTN = u'<button>Zamknij pokój</button>'
 def leave_open_room_btn(key): return '<button onclick=\'Rooms.hideDialog(%s)\'>Wejdź i nie zamykaj</button>' % key
 def close_room_btn(key): return '<button onclick=\'Rooms.closeRoom(%s)\'>Wejdź i zamknij kluczem</button>' % key
-CONST_FORM = """<form><input type=\'submit\' value=\'Ustaw hasło\'/></form>"""
+CONST_FORM = """<form>{% csrf_token %}<input type=\'submit\' value=\'Ustaw hasło\'/></form>"""
 
 
 @login_required
