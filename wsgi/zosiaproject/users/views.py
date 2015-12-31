@@ -1,7 +1,7 @@
 from django.utils.timezone import timedelta
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ObjectDoesNotExist
-from django.shortcuts import render, render_to_response, get_object_or_404
+from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.tokens import default_token_generator as token_generator
 from django.utils.http import base36_to_int
 from django.http import Http404, HttpResponseRedirect, HttpResponse
@@ -38,7 +38,7 @@ def register(request):
     f2 = pref_form.is_valid()
     f3 = org_form.is_valid()
     if not (f1 and f2 and f3):
-        return render_to_response('register_form.html', locals())
+        return render(request, 'register_form.html', locals())
     
     user = user_form.save()
     org = org_form.save()
@@ -83,7 +83,7 @@ def waiting_list(request):
     form = WaitingForm(request.POST)
     user_form = RegistrationForm(request.POST)
 
-    return render_to_response('waiting.html', {'pref_form': form, 'user_form': user_form,
+    return render(request, 'waiting.html', {'pref_form': form, 'user_form': user_form,
                                                'date_1': date_1, 'date_2': date_2, 'date_3': date_3, 'date_4': date_4,
                                                'definition': definition})
 
@@ -127,12 +127,12 @@ def activate_user(request, uidb36=None, token=None):
         uid_int = base36_to_int(uidb36)
         usr = get_object_or_404(Participant, id=uid_int)
     except Exception:
-        return render_to_response('reactivation.html', {})
+        return render(request, 'reactivation.html', {})
     if token_generator.check_token(usr, token):
         usr.is_active = True
         usr.save()
     else:
-        return render_to_response('reactivation.html', {})
+        return render(request, 'reactivation.html', {})
     return HttpResponseRedirect('/login/?next=/change_preferences/') # yeah, right...
 
 
@@ -142,13 +142,13 @@ def regulations(request):
     definition = get_object_or_404(ZosiaDefinition, active_definition=True)
     zosia_start = definition.zosia_start
     zosia_final = definition.zosia_final
-    return render_to_response('regulations.html', locals())
+    return render(request, 'regulations.html', locals())
 
 
 def thanks(request):
     user = request.user
     title = "Registration"
-    return render_to_response('thanks.html', locals())
+    return render(request, 'thanks.html', locals())
 
 
 @login_required
@@ -160,7 +160,7 @@ def users_status(request):
     # prefs = UserPreferences.objects.all()
     #list = zip(users,prefs)
     list = []
-    return render_to_response('the_great_table.html', locals())
+    return render(request, 'the_great_table.html', locals())
 
 
 def register_payment(request):

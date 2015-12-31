@@ -1,5 +1,5 @@
 from django.shortcuts import (
-    get_object_or_404, render_to_response
+    get_object_or_404, render
 )
 
 from common.forms import LoginForm
@@ -13,4 +13,4 @@ def index(request):
     login_form = LoginForm()
     definition = get_object_or_404(ZosiaDefinition, active_definition=True)
 
-    return render_to_response('blog.html', locals())
+    return render(request, 'blog.html', locals())

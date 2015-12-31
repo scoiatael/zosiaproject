@@ -1,7 +1,7 @@
 # -*- coding: UTF-8 -*-
 
 from django.utils.translation import ugettext as _
-from django.shortcuts import render_to_response
+from django.shortcuts import render
 
 from common.forms import LoginForm
 from common.helpers import *
@@ -30,11 +30,11 @@ def index(request):
                 messages = [ _("thankyou") ]
                 lecture_proposition_form = LectureForm()
 
-    return render_to_response('lectures.html', locals())
+    return render(request, 'lectures.html', locals())
 
 
 def program(request):
     title = "Program"
     user = request.user
-    return render_to_response('program.html', locals())
+    return render(request, 'program.html', locals())
 

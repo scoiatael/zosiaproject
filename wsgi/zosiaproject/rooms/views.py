@@ -2,7 +2,7 @@ from django.views.decorators.cache import cache_page
 from django.http import *
 from django.template import Context
 from django.template.loader import get_template
-from django.shortcuts import render_to_response
+from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
 from django.views.decorators.csrf import csrf_exempt
@@ -23,7 +23,7 @@ def index(request):
 
     user = request.user
     title = "Rooms"
-    return render_to_response('rooms.html',locals())
+    return render(request, 'rooms.html',locals())
 
 
 #@login_required
