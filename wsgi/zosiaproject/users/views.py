@@ -90,10 +90,9 @@ def waiting_list(request):
 @never_cache
 @login_required
 def change_preferences(request):
-    user = request.user
     title = "Change preferences"
     try:
-        prefs = UserPreferences.objects.get(user=user)
+        prefs = UserPreferences.objects.get(user=request.user)
     except ObjectDoesNotExist:
         return HttpResponseRedirect('/waiting/')
 
@@ -146,7 +145,6 @@ def regulations(request):
 
 
 def thanks(request):
-    user = request.user
     title = "Registration"
     return render(request, 'thanks.html', locals())
 
@@ -166,8 +164,7 @@ def users_status(request):
 def register_payment(request):
     if not request.POST:
         raise Http404('POST only')
-    user = request.user
-    if not user.is_authenticated() or not user.is_staff or not user.is_active:
+    if not request.user.is_authenticated() or not request.user.is_staff or not request.user.is_active:
         raise Http404('User is not authenticated or is not staff memeber or is not active')
     pid = request.POST['id']
     prefs = UserPreferences.objects.get(id=pid)
