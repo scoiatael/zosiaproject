@@ -9,4 +9,4 @@ class Agenda(models.Model):
         get_latest_by = 'pub_date'
 
     def __str__(self):
-        return self.pub_date
+        return 'Agenda #{}'.format(self.id)

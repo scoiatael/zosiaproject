@@ -10,5 +10,5 @@ class AgendaView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super(AgendaView, self).get_context_data(**kwargs)
         context['agenda'] = Agenda.objects \
-            .filter(pub_date__gte=timezone.now()).latest()
+            .filter(pub_date__lte=timezone.now()).first()
         return context

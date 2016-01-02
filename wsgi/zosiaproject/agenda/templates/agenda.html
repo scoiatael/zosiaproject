@@ -33,7 +33,7 @@
 {% block content %}
 
 {% if agenda %}
-    {{ agenda.content }}
+    {{ agenda.content|safe }}
 {% else %}   
     Program ogłosimy już wkrótce :)
 {% endif %}
