@@ -1,3 +1,12 @@
 from django.db import models
+from django.utils import timezone
 
-# Create your models here.
+class Agenda(models.Model):
+    pub_date = models.DateTimeField()
+    content = models.TextField()
+
+    class Meta:
+        get_latest_by = 'pub_date'
+
+    def __str__(self):
+        return self.pub_date

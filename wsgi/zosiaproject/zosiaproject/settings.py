@@ -61,9 +61,6 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     #'django.contrib.formtools',
-    'dbbackup',  # django-dbbackup
-    'import_export',  # django-import-export
-    'debug_toolbar',  # django-debug-toolbar
 
     'agenda',
     'rooms',
@@ -75,7 +72,11 @@ INSTALLED_APPS = (
     'sponsors',
     'polls',
     'committee',
-    #'django_extensions',
+
+    # 'django_extensions',  # django-extensions
+    'dbbackup',  # django-dbbackup
+    'import_export',  # django-import-export
+    'debug_toolbar',  # django-debug-toolbar
 )
 
 MIDDLEWARE_CLASSES = (

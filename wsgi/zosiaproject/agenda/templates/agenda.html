@@ -31,5 +31,11 @@
 {% endblock css %}
 
 {% block content %}
-Program ogłosimy już wkrótce :)
+
+{% if agenda %}
+    {{ agenda.content }}
+{% else %}   
+    Program ogłosimy już wkrótce :)
+{% endif %}
+
 {% endblock content %}

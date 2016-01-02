@@ -1,5 +1,14 @@
-from django.shortcuts import render
+from django.views.generic.base import TemplateView
+from django.utils import timezone
 
-def index(request):
-    title = "Program"
-    return render(request, 'agenda.html', locals())
+from .models import Agenda
+
+class AgendaView(TemplateView):
+
+    template_name = 'agenda.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(AgendaView, self).get_context_data(**kwargs)
+        context['agenda'] = Agenda.objects \
+            .filter(pub_date__gte=timezone.now()).latest()
+        return context
