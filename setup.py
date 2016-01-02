@@ -12,7 +12,6 @@ setup(
     install_requires=[
         'Django==1.8.7',
         'Pillow==3.0.0',
-        'pytz==2015.7',
         'django-mailgun==0.8.0',
         'django-dbbackup==2.3.3',
         'django-import-export==0.4.2',
@@ -22,7 +21,6 @@ setup(
         'https://pypi.python.org/simple/',
         'https://pypi.python.org/simple/django/',
         'https://pypi.python.org/simple/pillow/',
-        'https://pypi.python.org/simple/pytz/',
         'https://pypi.python.org/simple/django-mailgun/',
         'https://pypi.python.org/simple/django-dbbackup/',
         'https://pypi.python.org/simple/django-import-export/',
