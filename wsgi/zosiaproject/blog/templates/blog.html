@@ -69,11 +69,11 @@
 {#   </ul>#}
 {#   </p>#}
 {% if sponsors %}
-<h4 style="margin-bottom:20px;">Partnerzy i sponsorzy</h4>
+<h4 style="margin-bottom:10px;">Partnerzy i sponsorzy</h4>
     {% for sponsor in sponsors %}
    <p style="text-align: center">
-       <a href="{{ sponsor.url }}">
-            <img class="spnsr_logo" src='{{ sponsor.logo.url }}' alt='{{ sponsor.name }}' title='{{ sponsor.name }}'/>
+       <a href="{{ sponsor.url }}" target="_blank">
+            <img class="spnsr_logo" src="{{ sponsor.logo.url }}" alt="{{ sponsor.name }}" title="{{ sponsor.name }}"/>
        </a>
    </p>
     {% endfor %}
