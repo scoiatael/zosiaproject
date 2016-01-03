@@ -14,7 +14,7 @@
 {% endblock %}
 
 {% block css %}
-    .sponsor_logo {
+    .spnsr_logo {
     margin-bottom: 20px;
     width: 100%;
     }
@@ -73,7 +73,7 @@
     {% for sponsor in sponsors %}
    <p style="text-align: center">
        <a href="{{ sponsor.url }}">
-            <img class="sponsor_logo" src='{{ sponsor.logo.url }}' alt='{{ sponsor.name }}' title='{{ sponsor.name }}'/>
+            <img class="spnsr_logo" src='{{ sponsor.logo.url }}' alt='{{ sponsor.name }}' title='{{ sponsor.name }}'/>
        </a>
    </p>
     {% endfor %}
