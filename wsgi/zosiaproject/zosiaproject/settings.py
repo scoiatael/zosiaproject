@@ -191,6 +191,7 @@ MEDIA_ROOT = os.path.join(DATA_DIR, 'media')
 EMAIL_BACKEND = 'django_mailgun.MailgunBackend'
 MAILGUN_ACCESS_KEY = SECRETS.get('mailgun_access_key')
 MAILGUN_SERVER_NAME = SECRETS.get('mailgun_server_name')
+DEFAULT_FROM_EMAIL = 'ksi@cs.uni.wroc.pl'
 
 
 # Django Database Backup

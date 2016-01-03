@@ -201,7 +201,7 @@ class UserPreferences(models.Model):
                 t = loader.get_template('payment_registered_email.txt')
                 send_mail( 'Wpłata została zaksięgowana.',
                              t.render(Context({'rooming_time': rooming_time - timedelta(minutes=self.minutes_early)})),
-                             'from@example.com',
+                             None,
                              [ self.user.email ],
                              fail_silently=True )
         except Exception:

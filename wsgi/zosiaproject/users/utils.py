@@ -13,7 +13,7 @@ def send_time_email(preference):
             }
         send_mail( '[ZOSIA 2016] Twój czas otwarcia zapisów na pokoje',
             t.render(Context(c)),
-            'ksi@cs.uni.wroc.pl',
+            None,
             [ preference.user.email ],
             fail_silently=True )
 
@@ -28,7 +28,7 @@ def send_confirmation_mail(request, user, definition):
             }
         send_mail( 'Potwierdź założenie konta na zosia.org',
             t.render(Context(c)),
-            'ksi@cs.uni.wroc.pl',
+            None,
             [ user.email ],
             fail_silently=True )
 
