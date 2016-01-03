@@ -30,6 +30,7 @@ def register(request):
     date_3 = date_2 + timedelta(days=1)
     date_4 = date_3 + timedelta(days=1)
 
+    login_form = None
     user_form = RegistrationForm(request.POST or None)
     pref_form = preferences_form_fabric(definition)(request.POST or None)
     org_form = OrganizationForm(request.POST or None)

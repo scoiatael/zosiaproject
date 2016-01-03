@@ -3,7 +3,6 @@
 from django.utils.translation import ugettext as _
 from django.shortcuts import render
 
-from django.contrib.auth.forms import AuthenticationForm
 from common.helpers import *
 
 from .forms import *
@@ -19,7 +18,6 @@ def index(request):
 
     workshops = Lecture.objects.filter(accepted=True, person_type__gte=1, type=1).order_by('person_type', 'order')
     if is_lecture_suggesting_enabled():
-        login_form = AuthenticationForm()
         if request.user.is_authenticated() and request.user.is_active:
             lecture_proposition_form = LectureForm(request.POST or None)
             if lecture_proposition_form.is_valid():
