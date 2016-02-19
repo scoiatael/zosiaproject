@@ -61,6 +61,7 @@ def get_room_locators(room):
         return "Mieszkają tu: %s<br/>" % lst
 
 @login_required
+@csrf_exempt
 def trytogetin_room(request):
     if not request.POST: raise Http404
     if not has_user_opened_records(request.user): return HttpResponse('fail')
